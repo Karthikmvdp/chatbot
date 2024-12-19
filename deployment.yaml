@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: openai-chatbots
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: openai-chatbots
+  template:
+    metadata:
+      labels:
+        app: openai-chatbots
+    spec:
+      containers:
+      - name: chatbot-containers
+        image: dhivyadhub/openai-chatbots:latest
+        ports:
+        - containerPort: 5000
+        env:
+        - name: OPENAI_API_KEY
+          value: "sk-proj-mhH34ZZ8Np7f6KX8XB-BPXnetQ7qCUMYqHxt0FK6AA"  # You can use a secret for production
